@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quotation | RR Trinetra</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/quotation.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="images/logo.png" alt="RR Trinetra">
+
+            <div>
+                <h2>RR Trinetra</h2>
+                <span>Billing Software</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+
+                🏠 Dashboard
+            </a>
+
+            <a href="pos-billing.html">
+                🧾 POS Billing
+            </a>
+
+            <a href="quotation.html" class="active">
+                📄 Quotation
+            </a>
+
+            <a href="delivery-challan.html">
+                🚚 Delivery Challan
+            </a>
+
+            <a href="customers.html">
+                👤 Customers
+            </a>
+
+            <a href="history.html">
+                📋 History
+            </a>
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <div>
+                <h1>Quotation</h1>
+                <p>Create a new quotation</p>
+            </div>
+
+            <div class="bill-info">
+
+                <span>Quotation No.</span>
+
+                <strong id="quotationNumber">
+                    QT-1001
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- CUSTOMER DETAILS -->
+        <section class="card customer-card">
+
+            <div class="section-title">
+                <h2>Customer Details</h2>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Customer Name</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter customer name">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+
+                    <input
+                        type="text"
+                        id="customerMobile"
+                        placeholder="Enter mobile number">
+                </div>
+
+
+                <div class="form-group">
+                    <label>GSTIN</label>
+
+                    <input
+                        type="text"
+                        id="customerGST"
+                        placeholder="Optional">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Address</label>
+
+                    <input
+                        type="text"
+                        id="customerAddress"
+                        placeholder="Customer address">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUOTATION ITEMS -->
+        <section class="card items-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Quotation Items</h2>
+                    <p>Add products or services</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="addQuotationItem()">
+                    + Add Item
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="items-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>Item / Description</th>
+                            <th>Qty</th>
+                            <th>Rate</th>
+                            <th>Discount</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="quotationItemsBody">
+
+                        <tr class="quotation-item-row">
+
+                            <td class="serial">1</td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="item-name"
+                                    placeholder="Item name">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-qty"
+                                    value="1"
+                                    min="1"
+                                    oninput="calculateQuotation()">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-rate"
+                                    value="0"
+                                    min="0"
+                                    oninput="calculateQuotation()">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-discount"
+                                    value="0"
+                                    min="0"
+                                    oninput="calculateQuotation()">
+                            </td>
+
+                            <td class="item-amount">
+                                ₹0.00
+                            </td>
+
+                            <td>
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    onclick="removeQuotationItem(this)">
+                                    ×
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOWER SECTION -->
+        <section class="bottom-grid">
+
+
+            <!-- VALIDITY + NOTES -->
+            <div class="card quotation-info-card">
+
+                <h2>Quotation Information</h2>
+
+
+                <div class="small-form">
+
+                    <div class="form-group">
+
+                        <label>Quotation Validity</label>
+
+                        <select id="quotationValidity">
+
+                            <option value="7 Days">
+                                7 Days
+                            </option>
+
+                            <option value="15 Days">
+                                15 Days
+                            </option>
+
+                            <option value="30 Days" selected>
+                                30 Days
+                            </option>
+
+                            <option value="45 Days">
+                                45 Days
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Reference</label>
+
+                        <input
+                            type="text"
+                            id="quotationReference"
+                            placeholder="Optional">
+                    </div>
+
+                </div>
+
+
+                <div class="notes-box">
+
+                    <label>Notes</label>
+
+                    <textarea
+                        id="quotationNotes"
+                        placeholder="Quotation notes"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTALS -->
+            <div class="card total-card">
+
+                <div class="total-line">
+
+                    <span>Subtotal</span>
+
+                    <strong id="subtotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="total-line">
+
+                    <span>Discount</span>
+
+                    <strong id="discountTotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="tax-row">
+
+                    <label>GST %</label>
+
+                    <input
+                        type="number"
+                        id="gstPercent"
+                        value="0"
+                        min="0"
+                        oninput="calculateQuotation()">
+
+                </div>
+
+
+                <div class="total-line">
+
+                    <span>GST</span>
+
+                    <strong id="gstAmount">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="grand-total">
+
+                    <span>Grand Total</span>
+
+                    <strong id="grandTotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTION BAR -->
+        <div class="action-bar">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="newQuotation()">
+                New Quotation
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="saveQuotation()">
+                Save Quotation
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="saveQuotationAndPrint()">
+                Save & Print
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/quotation.js"></script>
+
+</body>
+
+</html>

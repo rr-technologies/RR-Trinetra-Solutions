@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quotation - RR Trinetra</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #eeeeee;
+            font-family: Arial, sans-serif;
+            color: #111111;
+        }
+
+        .quotation {
+            width: 210mm;
+            min-height: 297mm;
+            margin: auto;
+            background: #ffffff;
+            padding: 15mm;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            border-bottom: 2px solid #222222;
+
+            padding-bottom: 14px;
+        }
+
+        .company {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .company img {
+            width: 68px;
+            height: 68px;
+            object-fit: contain;
+        }
+
+        .company h1 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .company p {
+            margin: 4px 0;
+            font-size: 12px;
+        }
+
+
+        /* QUOTATION TITLE */
+
+        .quotation-title {
+            text-align: right;
+        }
+
+        .quotation-title h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .quotation-title p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+
+
+        /* CUSTOMER */
+
+        .customer-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+        .box {
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 11px;
+            font-size: 12px;
+        }
+
+        .box strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .box div {
+            margin: 3px 0;
+        }
+
+
+        /* QUOTATION META */
+
+        .quotation-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+
+            margin-top: 12px;
+        }
+
+
+        /* TABLE */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            margin-top: 22px;
+        }
+
+        th,
+        td {
+            border: 1px solid #cccccc;
+
+            padding: 9px;
+
+            font-size: 12px;
+        }
+
+        th {
+            background: #f2f2f2;
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+
+        /* TOTALS */
+
+        .totals {
+            width: 300px;
+            margin-left: auto;
+            margin-top: 18px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 6px 0;
+
+            font-size: 13px;
+        }
+
+        .grand-total {
+            border-top: 2px solid #222222;
+
+            margin-top: 7px;
+            padding-top: 9px;
+
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+
+        /* NOTES */
+
+        .notes {
+            margin-top: 22px;
+
+            border: 1px solid #dddddd;
+
+            padding: 11px;
+
+            min-height: 55px;
+
+            font-size: 12px;
+        }
+
+        .notes strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 22px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .validity-note {
+            width: 55%;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .validity-note strong {
+            font-size: 12px;
+        }
+
+
+        .signature-area {
+            width: 180px;
+            text-align: center;
+
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .stamp-img {
+            width: 90px;
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto 4px;
+        }
+
+        .signature-area strong {
+            display: block;
+
+            font-size: 10px;
+        }
+
+
+        /* PRINT */
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+
+            html,
+            body {
+                width: 210mm;
+                min-height: 297mm;
+
+                margin: 0;
+                padding: 0;
+
+                background: #ffffff;
+            }
+
+            .quotation {
+                width: 210mm;
+                min-height: 297mm;
+
+                margin: 0;
+
+                padding: 12mm 14mm;
+
+                background: #ffffff;
+            }
+
+            .notes,
+            .footer {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="quotation">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="company">
+
+            <img
+                src="images/logo.png"
+                alt="RR Trinetra"
+            >
+
+            <div>
+
+                <h1>RR Trinetra</h1>
+
+                <p>
+                    RR TRINETRA Focus & Services
+                </p>
+
+                <p>
+                    Vijayawada
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quotation-title">
+
+            <h2>QUOTATION</h2>
+
+            <p>
+                Quotation No:
+                <strong id="quotationNumber"></strong>
+            </p>
+
+            <p id="quotationDate"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CUSTOMER -->
+
+    <div class="customer-section">
+
+        <div class="box">
+
+            <strong>Customer Details</strong>
+
+            <div>
+                Name:
+                <span id="customerName"></span>
+            </div>
+
+            <div>
+                Mobile:
+                <span id="customerMobile"></span>
+            </div>
+
+            <div>
+                GSTIN:
+                <span id="customerGST"></span>
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>Address</strong>
+
+            <div id="customerAddress"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUOTATION INFO -->
+
+    <div class="quotation-meta">
+
+        <div class="box">
+
+            <strong>Validity</strong>
+
+            <span id="quotationValidity"></span>
+
+        </div>
+
+        <div class="box">
+
+            <strong>Reference</strong>
+
+            <span id="quotationReference"></span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ITEMS -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>#</th>
+
+                <th>Item / Description</th>
+
+                <th>Qty</th>
+
+                <th>Rate</th>
+
+                <th>Discount</th>
+
+                <th class="text-right">
+                    Amount
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="itemsTable"></tbody>
+
+    </table>
+
+
+    <!-- TOTALS -->
+
+    <div class="totals">
+
+        <div class="total-row">
+
+            <span>Subtotal</span>
+
+            <strong id="subtotal">
+                ₹0.00
+            </strong>
+
+        </div>
+
+
+        <div class="total-row">
+
+            <span>Discount</span>
+
+            <strong id="discount">
+                ₹0.00
+            </strong>
+
+        </div>
+
+
+        <div class="total-row">
+
+            <span>GST</span>
+
+            <strong id="gst">
+                ₹0.00
+            </strong>
+
+        </div>
+
+
+        <div class="total-row grand-total">
+
+            <span>Grand Total</span>
+
+            <strong id="grandTotal">
+                ₹0.00
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="notes">
+
+        <strong>Notes</strong>
+
+        <div id="notes">
+            -
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div class="validity-note">
+
+            <strong>Quotation Note</strong>
+
+            <div>
+                This quotation is subject to the above
+                validity period and agreed terms.
+            </div>
+
+        </div>
+
+
+        <div class="signature-area">
+
+            <img
+                src="images/rr-trinetra-stamp.png"
+                alt="RR Trinetra Authorized Stamp"
+                class="stamp-img"
+            >
+
+            <strong>
+                Authorized Signature
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    const quotation = JSON.parse(
+        localStorage.getItem("printQuotationData") || "null"
+    );
+
+
+    if (!quotation) {
+
+        document.body.innerHTML =
+            "<h2 style='text-align:center'>No quotation data found.</h2>";
+
+    } else {
+
+
+        /* BASIC DETAILS */
+
+        document.getElementById(
+            "quotationNumber"
+        ).textContent =
+            quotation.quotationNumber || "";
+
+
+        document.getElementById(
+            "quotationDate"
+        ).textContent =
+            quotation.date
+                ? new Date(
+                    quotation.date
+                ).toLocaleString()
+                : "";
+
+
+        document.getElementById(
+            "customerName"
+        ).textContent =
+            quotation.customerName || "";
+
+
+        document.getElementById(
+            "customerMobile"
+        ).textContent =
+            quotation.mobile || "";
+
+
+        document.getElementById(
+            "customerGST"
+        ).textContent =
+            quotation.gstin || "";
+
+
+        document.getElementById(
+            "customerAddress"
+        ).textContent =
+            quotation.address || "-";
+
+
+        document.getElementById(
+            "quotationValidity"
+        ).textContent =
+            quotation.validity || "";
+
+
+        document.getElementById(
+            "quotationReference"
+        ).textContent =
+            quotation.reference || "-";
+
+
+        document.getElementById(
+            "notes"
+        ).textContent =
+            quotation.notes || "-";
+
+
+        /* ITEMS */
+
+        const table =
+            document.getElementById(
+                "itemsTable"
+            );
+
+
+        let subtotal = 0;
+        let discount = 0;
+
+
+        (quotation.items || []).forEach(
+            (item, index) => {
+
+                const qty =
+                    Number(item.qty || 0);
+
+                const rate =
+                    Number(item.rate || 0);
+
+                const itemDiscount =
+                    Number(item.discount || 0);
+
+                const amount =
+                    Number(item.amount || 0);
+
+
+                subtotal += qty * rate;
+
+                discount += itemDiscount;
+
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+
+                    <td>${item.name || ""}</td>
+
+                    <td>${qty}</td>
+
+                    <td>
+                        ₹${rate.toFixed(2)}
+                    </td>
+
+                    <td>
+                        ₹${itemDiscount.toFixed(2)}
+                    </td>
+
+                    <td class="text-right">
+                        ₹${amount.toFixed(2)}
+                    </td>
+                `;
+
+
+                table.appendChild(row);
+
+            }
+        );
+
+
+        /* TOTALS */
+
+        const taxableAmount =
+            Math.max(
+                subtotal - discount,
+                0
+            );
+
+
+        const gstPercent =
+            Number(
+                quotation.gstPercent || 0
+            );
+
+
+        const gstAmount =
+            taxableAmount *
+            gstPercent /
+            100;
+
+
+        const grandTotal =
+            taxableAmount +
+            gstAmount;
+
+
+        document.getElementById(
+            "subtotal"
+        ).textContent =
+            "₹" + subtotal.toFixed(2);
+
+
+        document.getElementById(
+            "discount"
+        ).textContent =
+            "₹" + discount.toFixed(2);
+
+
+        document.getElementById(
+            "gst"
+        ).textContent =
+            "₹" + gstAmount.toFixed(2);
+
+
+        document.getElementById(
+            "grandTotal"
+        ).textContent =
+            "₹" + grandTotal.toFixed(2);
+
+    }
+
+</script>
+
+</body>
+
+</html>

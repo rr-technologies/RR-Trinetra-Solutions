@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Delivery Challan - RR Trinetra</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 20px;
+
+            background: #eeeeee;
+
+            font-family: Arial, sans-serif;
+
+            color: #111;
+        }
+
+
+        /* A4 PAGE */
+
+        .challan {
+            width: 210mm;
+            min-height: 297mm;
+
+            margin: auto;
+
+            background: #fff;
+
+            padding: 15mm;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            border-bottom: 2px solid #222;
+
+            padding-bottom: 14px;
+        }
+
+
+        .company {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+
+        .company img {
+            width: 68px;
+            height: 68px;
+
+            object-fit: contain;
+        }
+
+
+        .company h1 {
+            margin: 0;
+
+            font-size: 25px;
+        }
+
+
+        .company p {
+            margin: 4px 0;
+
+            font-size: 12px;
+        }
+
+
+        /* DC TITLE */
+
+        .document-title {
+            text-align: right;
+        }
+
+
+        .document-title h2 {
+            margin: 0;
+
+            font-size: 27px;
+        }
+
+
+        .document-title p {
+            margin: 5px 0;
+
+            font-size: 12px;
+        }
+
+
+        /* CUSTOMER SECTION */
+
+        .customer-section {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+            margin-top: 22px;
+        }
+
+
+        .box {
+            border: 1px solid #cccccc;
+
+            border-radius: 5px;
+
+            padding: 11px;
+
+            font-size: 12px;
+        }
+
+
+        .box strong {
+            display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 13px;
+        }
+
+
+        .box div {
+            margin: 4px 0;
+        }
+
+
+        /* DELIVERY DETAILS */
+
+        .delivery-section {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr 1fr 1fr;
+
+            gap: 12px;
+
+            margin-top: 14px;
+        }
+
+
+        /* ITEMS TABLE */
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 22px;
+        }
+
+
+        th,
+        td {
+            border: 1px solid #cccccc;
+
+            padding: 9px;
+
+            font-size: 12px;
+        }
+
+
+        th {
+            background: #f2f2f2;
+
+            text-align: left;
+        }
+
+
+        .center {
+            text-align: center;
+        }
+
+
+        /* TOTAL QTY */
+
+        .quantity-summary {
+            width: 260px;
+
+            margin-left: auto;
+
+            margin-top: 14px;
+        }
+
+
+        .qty-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            border-top: 2px solid #222;
+
+            padding-top: 8px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* REMARKS */
+
+        .remarks {
+            margin-top: 22px;
+
+            border: 1px solid #dddddd;
+
+            padding: 11px;
+
+            min-height: 65px;
+
+            font-size: 12px;
+        }
+
+
+        .remarks strong {
+            display: block;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-end;
+
+            page-break-inside: avoid;
+
+            break-inside: avoid;
+        }
+
+
+        .footer-note {
+            width: 55%;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .footer-note strong {
+            font-size: 12px;
+        }
+
+
+        /* SIGNATURE */
+
+        .signature-area {
+            width: 180px;
+
+            text-align: center;
+
+            page-break-inside: avoid;
+
+            break-inside: avoid;
+        }
+
+
+        .stamp-img {
+            width: 90px;
+
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto 4px;
+
+            object-fit: contain;
+        }
+
+
+        .signature-area strong {
+            display: block;
+
+            font-size: 10px;
+        }
+
+
+        /* PRINT */
+
+        @page {
+            size: A4;
+
+            margin: 0;
+        }
+
+
+        @media print {
+
+            html,
+            body {
+                width: 210mm;
+
+                min-height: 297mm;
+
+                margin: 0;
+
+                padding: 0;
+
+                background: #fff;
+            }
+
+
+            .challan {
+                width: 210mm;
+
+                min-height: 297mm;
+
+                margin: 0;
+
+                padding: 12mm 14mm;
+
+                background: #fff;
+            }
+
+
+            table tr {
+                page-break-inside: avoid;
+
+                break-inside: avoid;
+            }
+
+
+            .remarks,
+            .footer {
+                page-break-inside: avoid;
+
+                break-inside: avoid;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="challan">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+
+        <div class="company">
+
+            <img
+                src="images/logo.png"
+                alt="RR Trinetra"
+            >
+
+
+            <div>
+
+                <h1>RR Trinetra</h1>
+
+                <p>
+                    RR TRINETRA Focus & Services
+                </p>
+
+                <p>
+                    Vijayawada
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="document-title">
+
+            <h2>DELIVERY CHALLAN</h2>
+
+            <p>
+                DC No:
+                <strong id="dcNumber"></strong>
+            </p>
+
+            <p id="dcDate"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CUSTOMER -->
+
+    <div class="customer-section">
+
+
+        <div class="box">
+
+            <strong>
+                Customer Details
+            </strong>
+
+
+            <div>
+                Name:
+                <span id="customerName"></span>
+            </div>
+
+
+            <div>
+                Mobile:
+                <span id="customerMobile"></span>
+            </div>
+
+
+            <div>
+                GSTIN:
+                <span id="customerGST"></span>
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>
+                Delivery Address
+            </strong>
+
+
+            <div id="customerAddress">
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DELIVERY DETAILS -->
+
+    <div class="delivery-section">
+
+
+        <div class="box">
+
+            <strong>
+                Delivery Date
+            </strong>
+
+            <div id="deliveryDate">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>
+                Vehicle Number
+            </strong>
+
+            <div id="vehicleNumber">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>
+                Transport / Courier
+            </strong>
+
+            <div id="transportName">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>
+                Reference
+            </strong>
+
+            <div id="reference">
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ITEMS -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th class="center">
+                    #
+                </th>
+
+                <th>
+                    Item / Description
+                </th>
+
+                <th class="center">
+                    Qty
+                </th>
+
+                <th class="center">
+                    Unit
+                </th>
+
+                <th>
+                    Remarks
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="itemsTable">
+
+        </tbody>
+
+    </table>
+
+
+    <!-- TOTAL QTY -->
+
+    <div class="quantity-summary">
+
+        <div class="qty-row">
+
+            <span>
+                Total Quantity
+            </span>
+
+            <span id="totalQty">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- REMARKS -->
+
+    <div class="remarks">
+
+        <strong>
+            Remarks
+        </strong>
+
+        <div id="remarksText">
+            -
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+
+        <div class="footer-note">
+
+            <strong>
+                Delivery Note
+            </strong>
+
+            <div>
+                This document records the items
+                delivered to the customer.
+            </div>
+
+        </div>
+
+
+        <div class="signature-area">
+
+            <img
+                src="images/rr-trinetra-stamp.png"
+                alt="RR Trinetra Authorized Stamp"
+                class="stamp-img"
+            >
+
+            <strong>
+                Authorized Signature
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+    const dc = JSON.parse(
+
+        localStorage.getItem(
+            "printDCData"
+        ) || "null"
+
+    );
+
+
+    if (!dc) {
+
+        document.body.innerHTML =
+
+            "<h2 style='text-align:center'>" +
+            "No delivery challan data found." +
+            "</h2>";
+
+    } else {
+
+
+        /* BASIC DETAILS */
+
+        document.getElementById(
+            "dcNumber"
+        ).textContent =
+            dc.dcNumber || "";
+
+
+        document.getElementById(
+            "dcDate"
+        ).textContent =
+
+            dc.createdAt
+
+                ? new Date(
+                    dc.createdAt
+                ).toLocaleString("en-IN")
+
+                : "";
+
+
+        document.getElementById(
+            "customerName"
+        ).textContent =
+            dc.customerName || "-";
+
+
+        document.getElementById(
+            "customerMobile"
+        ).textContent =
+            dc.mobile || "-";
+
+
+        document.getElementById(
+            "customerGST"
+        ).textContent =
+            dc.gstin || "-";
+
+
+        document.getElementById(
+            "customerAddress"
+        ).textContent =
+            dc.address || "-";
+
+
+        document.getElementById(
+            "deliveryDate"
+        ).textContent =
+            dc.deliveryDate || "-";
+
+
+        document.getElementById(
+            "vehicleNumber"
+        ).textContent =
+            dc.vehicleNumber || "-";
+
+
+        document.getElementById(
+            "transportName"
+        ).textContent =
+            dc.transportName || "-";
+
+
+        document.getElementById(
+            "reference"
+        ).textContent =
+            dc.reference || "-";
+
+
+        document.getElementById(
+            "remarksText"
+        ).textContent =
+            dc.remarks || "-";
+
+
+        /* ITEMS */
+
+        const table =
+            document.getElementById(
+                "itemsTable"
+            );
+
+
+        let totalQty = 0;
+
+
+        (dc.items || []).forEach(
+            (item, index) => {
+
+
+                const qty =
+                    Number(
+                        item.qty || 0
+                    );
+
+
+                totalQty += qty;
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td class="center">
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${item.name || ""}
+                    </td>
+
+                    <td class="center">
+                        ${qty}
+                    </td>
+
+                    <td class="center">
+                        ${item.unit || "Nos"}
+                    </td>
+
+                    <td>
+                        ${item.remarks || "-"}
+                    </td>
+
+                `;
+
+
+                table.appendChild(row);
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalQty"
+        ).textContent =
+            totalQty;
+
+
+        /* AUTO PRINT */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                setTimeout(
+                    () => {
+                        window.print();
+                    },
+                    400
+                );
+
+            }
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

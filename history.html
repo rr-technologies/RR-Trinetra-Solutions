@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>History | RR Trinetra</title>
+
+    <link
+        rel="stylesheet"
+        href="css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/history.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <img
+                src="images/logo.png"
+                alt="RR Trinetra"
+            >
+
+            <div>
+
+                <h2>RR Trinetra</h2>
+
+                <span>Billing Software</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+    🏠 Dashboard
+</a>
+
+
+            <a href="pos-billing.html">
+                🧾 POS Billing
+            </a>
+
+
+            <a href="quotation.html">
+                📄 Quotation
+            </a>
+
+
+            <a href="delivery-challan.html">
+                🚚 Delivery Challan
+            </a>
+
+
+            <a href="customers.html">
+                👤 Customers
+            </a>
+
+
+            <a
+                href="history.html"
+                class="active"
+            >
+                📋 History
+            </a>
+
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+
+        </nav>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="top-bar">
+
+
+            <div>
+
+                <h1>History</h1>
+
+                <p>
+                    View and manage all your business documents
+                </p>
+
+            </div>
+
+
+            <div class="bill-info">
+
+                <span>Total Records</span>
+
+                <strong id="totalRecords">
+                    0
+                </strong>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             SUMMARY
+        ====================================== -->
+
+        <section class="history-summary">
+
+
+            <div class="history-summary-card bills-summary">
+
+                <div class="history-summary-icon">
+                    🧾
+                </div>
+
+                <div>
+
+                    <span>
+                        Bills
+                    </span>
+
+                    <strong id="billCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="history-summary-card quotation-summary">
+
+                <div class="history-summary-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <span>
+                        Quotations
+                    </span>
+
+                    <strong id="quotationCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="history-summary-card dc-summary">
+
+                <div class="history-summary-icon">
+                    🚚
+                </div>
+
+                <div>
+
+                    <span>
+                        Delivery Challans
+                    </span>
+
+                    <strong id="dcCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             HISTORY CARD
+        ====================================== -->
+
+        <section class="card history-card">
+
+
+            <!-- SECTION HEADER -->
+
+            <div class="section-header">
+
+
+                <div>
+
+                    <h2>
+                        Document History
+                    </h2>
+
+                    <p>
+                        Search and view saved bills, quotations and delivery challans
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 FILTER TABS
+            ================================== -->
+
+            <div class="history-tabs">
+
+
+                <button
+                    type="button"
+                    class="history-tab active"
+                    data-type="all"
+                >
+                    All
+                </button>
+
+
+                <button
+                    type="button"
+                    class="history-tab"
+                    data-type="bill"
+                >
+                    Bills
+                </button>
+
+
+                <button
+                    type="button"
+                    class="history-tab"
+                    data-type="quotation"
+                >
+                    Quotations
+                </button>
+
+
+                <button
+                    type="button"
+                    class="history-tab"
+                    data-type="dc"
+                >
+                    Delivery Challans
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 SEARCH / FILTER BAR
+            ================================== -->
+
+            <div class="history-filters">
+
+
+                <div class="history-search">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="historySearch"
+                        placeholder="Search by document number or customer..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="history-date-filter">
+
+                    <label for="historyDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="historyDate"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="clearHistoryFilters"
+                >
+                    Clear
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 TABLE
+            ================================== -->
+
+            <div class="table-wrapper">
+
+
+                <table class="history-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Document No.
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="historyTableBody">
+
+                    </tbody>
+
+
+                </table>
+
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    id="emptyHistoryState"
+                    class="empty-history"
+                >
+
+                    <div class="empty-history-icon">
+                        📋
+                    </div>
+
+                    <strong>
+                        No records found
+                    </strong>
+
+                    <span>
+                        Saved bills, quotations and delivery challans will appear here.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================
+     CORE
+========================================= -->
+
+<script src="js/core.js"></script>
+
+
+<!-- =========================================
+     HISTORY LOGIC
+========================================= -->
+
+<script src="js/history.js"></script>
+
+
+</body>
+
+</html>

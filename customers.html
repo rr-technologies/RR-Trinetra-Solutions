@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Customers | RR Trinetra</title>
+
+    <link
+        rel="stylesheet"
+        href="css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/customers.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img
+                src="images/logo.png"
+                alt="RR Trinetra"
+            >
+
+            <div>
+
+                <h2>RR Trinetra</h2>
+
+                <span>Billing Software</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+    🏠 Dashboard
+</a>
+
+            <a href="pos-billing.html">
+                🧾 POS Billing
+            </a>
+
+            <a href="quotation.html">
+                📄 Quotation
+            </a>
+
+            <a href="delivery-challan.html">
+                🚚 Delivery Challan
+            </a>
+
+            <a
+                href="customers.html"
+                class="active"
+            >
+                👤 Customers
+            </a>
+
+            <a href="history.html">
+                📋 History
+            </a>
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="top-bar">
+
+            <div>
+
+                <h1>Customers</h1>
+
+                <p>
+                    Manage your customer information
+                </p>
+
+            </div>
+
+
+            <div class="bill-info">
+
+                <span>Total Customers</span>
+
+                <strong id="customerCount">
+                    0
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ADD CUSTOMER -->
+
+        <section class="card customer-form-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2 id="formTitle">
+                        Add New Customer
+                    </h2>
+
+                    <p>
+                        Save customer details for quick billing
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="customerForm"
+                autocomplete="off"
+            >
+
+                <input
+                    type="hidden"
+                    id="editingCustomerId"
+                >
+
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Customer Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Enter customer name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- MOBILE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customerMobile"
+                            placeholder="Enter mobile number"
+                            maxlength="10"
+                        >
+
+                    </div>
+
+
+
+                    <!-- GSTIN -->
+
+                    <div class="form-group">
+
+                        <label>
+                            GSTIN
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerGST"
+                            placeholder="Optional"
+                        >
+
+                    </div>
+
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerAddress"
+                            placeholder="Customer address"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="form-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="cancelEditBtn"
+                        onclick="cancelCustomerEdit()"
+                        style="display:none;"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        onclick="clearCustomerForm()"
+                    >
+                        Clear
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                    >
+                        <span id="saveButtonText">
+                            Save Customer
+                        </span>
+                    </button>
+
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- CUSTOMER LIST -->
+
+        <section class="card customer-list-card">
+
+
+            <div class="section-header">
+
+
+                <div>
+
+                    <h2>
+                        Customer List
+                    </h2>
+
+                    <p>
+                        Search and manage saved customers
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <div class="customer-search">
+
+                <input
+                    type="text"
+                    id="customerSearch"
+                    placeholder="Search by name, mobile or GSTIN..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    class="search-clear-btn"
+                    onclick="clearCustomerSearch()"
+                    title="Clear search"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+
+                <table class="customer-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Customer Name
+                            </th>
+
+                            <th>
+                                Mobile
+                            </th>
+
+                            <th>
+                                GSTIN
+                            </th>
+
+                            <th>
+                                Address
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="customerTableBody">
+
+                    </tbody>
+
+                </table>
+
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    id="emptyCustomerState"
+                    class="empty-customer"
+                >
+
+                    <div class="empty-icon">
+                        👤
+                    </div>
+
+                    <strong>
+                        No customers found
+                    </strong>
+
+                    <span>
+                        Add a customer using the form above.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- CORE FIRST -->
+
+<script src="js/core.js"></script>
+
+
+<!-- CUSTOMER LOGIC -->
+
+<script src="js/customers.js"></script>
+
+
+</body>
+
+</html>

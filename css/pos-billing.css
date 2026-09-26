@@ -1,0 +1,43 @@
+/* POS BILLING PAGE */
+
+.customer-card {
+    border-top: 3px solid #2563eb;
+}
+
+.items-card {
+    border-top: 3px solid #0ea5e9;
+}
+
+.payment-card {
+    border-top: 3px solid #16a34a;
+}
+
+.total-card {
+    border-top: 3px solid #7c3aed;
+}
+
+.items-table tbody tr {
+    transition: 0.2s;
+}
+
+.items-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+@media (max-width: 700px) {
+
+    .section-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .section-header .btn {
+        width: 100%;
+    }
+
+    .payment-options {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}

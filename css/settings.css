@@ -1,0 +1,590 @@
+/* =========================================================
+   RR TRINETRA - SETTINGS
+   Premium Settings Page
+   ========================================================= */
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 7px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.settings-status {
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    box-shadow: 0 7px 20px rgba(15, 23, 42, 0.05);
+}
+
+.settings-status span {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SETTINGS CARD
+   ========================================================= */
+
+.settings-card {
+    margin-bottom: 24px;
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.06);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.settings-card:hover {
+    box-shadow:
+        0 13px 32px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.settings-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+
+    margin-bottom: 24px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.settings-section-header h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.settings-section-header p {
+    margin: 6px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOGO SETTINGS
+   ========================================================= */
+
+.logo-settings-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-bottom: 28px;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #eef2f7;
+}
+
+.logo-preview-box {
+    width: 86px;
+    height: 86px;
+
+    flex: 0 0 86px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.05);
+}
+
+.logo-preview-box img {
+    width: 70px;
+    height: 70px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.logo-upload-area {
+    min-width: 0;
+}
+
+.field-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.logo-upload-area input[type="file"] {
+    width: 100%;
+    max-width: 360px;
+
+    padding: 8px;
+
+    border-radius: 9px;
+
+    border: 1px solid #dbe3ee;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 12px;
+
+    box-sizing: border-box;
+}
+
+.logo-upload-area small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.settings-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px 18px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 13px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dbe3ee;
+
+    background: #f8fafc;
+
+    color: #0f172a;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+    height: 43px;
+}
+
+.form-group textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #93c5fd;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SETTINGS ACTIONS
+   ========================================================= */
+
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 26px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eef2f7;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    border-radius: 10px;
+
+    border: 1px solid transparent;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 16px rgba(37, 99, 235, 0.18);
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+
+    box-shadow:
+        0 9px 20px rgba(37, 99, 235, 0.22);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.btn-secondary:hover {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 16px rgba(22, 163, 74, 0.16);
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+
+/* =========================================================
+   BACKUP & RESTORE
+   ========================================================= */
+
+.backup-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.backup-box {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e8edf4;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.backup-box:hover {
+    transform: translateY(-2px);
+
+    border-color: #d7e3f5;
+
+    box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.backup-icon {
+    width: 46px;
+    height: 46px;
+
+    flex: 0 0 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    font-size: 18px;
+}
+
+.backup-box h3 {
+    margin: 2px 0 6px;
+
+    color: #0f172a;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.backup-box p {
+    margin: 0 0 14px;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.backup-box .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+}
+
+#restoreFile + .btn,
+.backup-box label.btn {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 8px 4px 18px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .backup-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .settings-status {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .logo-settings-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .logo-upload-area {
+        width: 100%;
+    }
+
+    .logo-upload-area input[type="file"] {
+        max-width: 100%;
+    }
+
+    .settings-card {
+        padding: 20px;
+    }
+
+    .settings-actions {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .settings-actions .btn {
+        width: 100%;
+    }
+
+    .dashboard-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .page-header h1 {
+        font-size: 28px;
+    }
+
+    .settings-card {
+        padding: 17px;
+        border-radius: 15px;
+    }
+
+    .settings-section-header h2 {
+        font-size: 18px;
+    }
+
+    .backup-box {
+        padding: 16px;
+    }
+
+}

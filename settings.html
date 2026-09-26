@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings | RR Trinetra</title>
+
+
+    <!-- COMMON -->
+    <link
+        rel="stylesheet"
+        href="css/common.css"
+    >
+
+
+    <!-- SETTINGS -->
+    <link
+        rel="stylesheet"
+        href="css/settings.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app-layout">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <img
+    id="sidebarLogo"
+    src="images/logo.png"
+    alt="RR Trinetra"
+>
+
+            <div>
+
+                <h2 id="sidebarGymName">RR Trinetra</h2>
+
+                <span>
+                    Billing Software
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="menu">
+
+
+            <a href="dashboard.html">
+
+                🏠 Dashboard
+
+            </a>
+
+
+            <a href="pos-billing.html">
+
+                🧾 POS Billing
+
+            </a>
+
+
+            <a href="quotation.html">
+
+                📄 Quotation
+
+            </a>
+
+
+            <a href="delivery-challan.html">
+
+                🚚 Delivery Challan
+
+            </a>
+
+
+            <a href="customers.html">
+
+                👤 Customers
+
+            </a>
+
+
+            <a href="history.html">
+
+                📋 History
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="active"
+            >
+
+                ⚙️ Settings
+
+            </a>
+
+
+        </nav>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="page-header">
+
+
+            <div>
+
+                <h1>
+                    Settings
+                </h1>
+
+                <p>
+                    Manage your business information and
+                    application settings
+                </p>
+
+            </div>
+
+
+            <div class="settings-status">
+
+                <span>
+                    RR Trinetra
+                </span>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             BUSINESS INFORMATION
+        ================================================== -->
+
+        <section class="settings-card">
+
+
+            <div class="settings-section-header">
+
+                <div>
+
+                    <h2>
+                        Business Information
+                    </h2>
+
+                    <p>
+                        Update the details used throughout
+                        your billing software
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOGO -->
+
+            <div class="logo-settings-row">
+
+
+                <div class="logo-preview-box">
+
+                    <img
+                        id="logoPreview"
+                        src="images/logo.png"
+                        alt="Business Logo"
+                    >
+
+                </div>
+
+
+                <div class="logo-upload-area">
+
+                    <label
+                        for="businessLogo"
+                        class="field-label"
+                    >
+                        Business Logo
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="businessLogo"
+                        accept="image/*"
+                    >
+
+
+                    <small>
+                        Upload your business logo.
+                        PNG or JPG recommended.
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FORM GRID -->
+
+            <div class="settings-grid">
+
+
+                <!-- BUSINESS NAME -->
+
+                <div class="form-group">
+
+                    <label for="businessName">
+                        Business Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="businessName"
+                        placeholder="Enter business name"
+                    >
+
+                </div>
+
+
+
+                <!-- OWNER NAME -->
+
+                <div class="form-group">
+
+                    <label for="ownerName">
+                        Owner Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ownerName"
+                        placeholder="Enter owner name"
+                    >
+
+                </div>
+
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="businessMobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="businessMobile"
+                        placeholder="Enter mobile number"
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="businessEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="businessEmail"
+                        placeholder="Enter email address"
+                    >
+
+                </div>
+
+                <div class="form-group">
+    <label for="businessGSTIN">GSTIN</label>
+
+    <input
+        type="text"
+        id="businessGSTIN"
+        placeholder="Enter GSTIN"
+        maxlength="15"
+        autocomplete="off"
+    >
+</div>
+
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-group full-width">
+
+                    <label for="businessAddress">
+                        Address
+                    </label>
+
+                    <textarea
+                        id="businessAddress"
+                        rows="3"
+                        placeholder="Enter business address"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- RECEIPT PREFIX -->
+
+                <div class="form-group">
+
+                    <label for="receiptPrefix">
+                        Receipt Prefix
+                    </label>
+
+                    <input
+                        type="text"
+                        id="receiptPrefix"
+                        placeholder="INV-"
+                    >
+
+                    <small>
+                        Example: INV-, BILL-, RR-
+                    </small>
+
+                </div>
+
+
+
+                <!-- CURRENCY -->
+
+                <div class="form-group">
+
+                    <label for="currency">
+                        Currency
+                    </label>
+
+                    <select id="currency">
+
+                        <option value="INR">
+                            ₹ - Indian Rupee
+                        </option>
+
+                        <option value="USD">
+                            $ - US Dollar
+                        </option>
+
+                        <option value="EUR">
+                            € - Euro
+                        </option>
+
+                        <option value="GBP">
+                            £ - British Pound
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="settings-actions">
+
+
+                <button
+                    type="button"
+                    id="resetSettings"
+                    class="btn btn-secondary"
+                >
+
+                    Reset
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="saveSettings"
+                    class="btn btn-primary"
+                >
+
+                    Save Settings
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             BACKUP & RESTORE
+        ================================================== -->
+
+        <section class="settings-card backup-card">
+
+
+            <div class="settings-section-header">
+
+                <div>
+
+                    <h2>
+                        Backup & Restore
+                    </h2>
+
+                    <p>
+                        Save your business data or restore
+                        a previous backup
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="backup-grid">
+
+
+                <!-- BACKUP -->
+
+                <div class="backup-box">
+
+                    <div class="backup-icon">
+                        💾
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Backup Data
+                        </h3>
+
+                        <p>
+                            Download your billing data
+                            as a backup file.
+                        </p>
+
+
+                        <button
+                            type="button"
+                            id="backupData"
+                            class="btn btn-primary"
+                        >
+                            Backup Data
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RESTORE -->
+
+                <div class="backup-box">
+
+                    <div class="backup-icon">
+                        ♻️
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Restore Data
+                        </h3>
+
+                        <p>
+                            Select a previous backup file
+                            and restore your data.
+                        </p>
+
+
+                        <label
+                            for="restoreFile"
+                            class="btn btn-secondary"
+                        >
+                            Choose File
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="restoreFile"
+                            accept=".json,application/json"
+                            hidden
+                        >
+
+
+                        <button
+                            type="button"
+                            id="restoreData"
+                            class="btn btn-success"
+                        >
+                            Restore Data
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+                RR Trinetra Focus & Services
+            </span>
+
+            <span>
+                Professional Billing System
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =======================================================
+     CORE
+======================================================== -->
+
+<script src="js/core.js"></script>
+
+
+
+<!-- =======================================================
+     SETTINGS LOGIC
+======================================================== -->
+
+<script src="js/settings.js"></script>
+
+
+</body>
+
+</html>

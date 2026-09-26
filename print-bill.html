@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice - RR Trinetra</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #eee;
+            font-family: Arial, sans-serif;
+            color: #111;
+        }
+
+        .invoice {
+            width: 210mm;
+            min-height: 297mm;
+            margin: auto;
+            background: white;
+            padding: 18mm;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #222;
+            padding-bottom: 15px;
+        }
+
+        .company {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .company img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .company h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .company p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .invoice-title {
+            text-align: right;
+        }
+
+        .invoice-title h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .invoice-title p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+
+        .customer-section {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 5px;
+        }
+
+        .box strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        th {
+            background: #f2f2f2;
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .totals {
+            width: 320px;
+            margin-left: auto;
+            margin-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 14px;
+        }
+
+        .grand-total {
+            border-top: 2px solid #222;
+            margin-top: 8px;
+            padding-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .notes {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .invoice {
+                width: 100%;
+                min-height: auto;
+                padding: 10mm;
+            }
+        }
+      
+        .invoice-footer {
+    margin-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    width: 100%;
+    page-break-inside: avoid;
+}
+
+.thanks {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.thanks strong {
+    font-size: 15px;
+}
+
+.thanks p {
+    margin: 6px 0 0;
+    color: #555;
+}
+
+.signature-area {
+    width: 230px;
+    text-align: center;
+}
+
+.seal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -10px;
+}
+
+.seal-ring {
+    width: 82px;
+    height: 82px;
+    border: 2px solid #333;
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 7px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.seal-ring strong {
+    font-size: 9px;
+    margin: 3px 0;
+}
+
+.signature-img {
+    width: 150px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    margin: -5px auto 4px;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.signature-area > span {
+    display: block;
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+}
+
+@media print {
+
+    .invoice-footer {
+        margin-top: 35px;
+    }
+
+    .signature-area {
+        width: 210px;
+    }
+
+    .signature-img {
+        width: 135px;
+        height: 55px;
+    }
+
+    .seal-ring {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+.signature-area {
+    width: 230px;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.stamp-img {
+    width: 190px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+    object-fit: contain;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.invoice-footer {
+    margin-top: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    page-break-inside: avoid;
+}
+
+.signature-area {
+    width: 180px;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.stamp-img {
+    width: 115px;
+    height: auto;
+    display: block;
+    margin: 0 auto 5px;
+    object-fit: contain;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+/* FINAL A4 PRINT SETTINGS */
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    html,
+    body {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+    }
+
+    body {
+        overflow: visible;
+    }
+
+    .invoice {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 12mm 14mm;
+        background: #ffffff;
+        box-shadow: none;
+    }
+
+    .invoice-footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .notes {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+/* FINAL INVOICE SPACING */
+
+.notes {
+    margin-top: 20px;
+    padding: 10px 12px;
+    min-height: 60px;
+}
+
+.invoice-footer {
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.signature-area {
+    width: 180px;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.stamp-img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 4px;
+    object-fit: contain;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 3px;
+}
+
+/* FINAL FOOTER SECTION */
+
+.invoice-footer {
+    margin-top: 28px;
+    width: 100%;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.footer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    border-top: 1px solid #ddd;
+    padding-top: 14px;
+}
+
+.terms-section,
+.payment-details {
+    font-size: 11px;
+}
+
+.terms-section h3,
+.payment-details h3 {
+    font-size: 12px;
+    margin: 0 0 7px;
+}
+
+.terms-section p,
+.payment-details p {
+    margin: 3px 0;
+    line-height: 1.4;
+}
+
+.footer-bottom {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.thanks {
+    font-size: 12px;
+}
+
+.thanks strong {
+    font-size: 14px;
+}
+
+.thanks p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.signature-area {
+    width: 180px;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.stamp-img {
+    width: 95px;
+    height: auto;
+    display: block;
+    margin: 0 auto 4px;
+    object-fit: contain;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 3px;
+}
+
+@media print {
+
+    .invoice-footer {
+        margin-top: 22px;
+    }
+
+    .footer-info {
+        gap: 15px;
+    }
+
+    .stamp-img {
+        width: 90px;
+    }
+}
+
+/* FINAL FOOTER ALIGNMENT */
+
+.invoice-footer {
+    margin-top: 24px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 28px;
+    align-items: end;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.footer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+}
+
+.terms-section,
+.payment-details {
+    font-size: 10.5px;
+}
+
+.terms-section h3,
+.payment-details h3 {
+    font-size: 12px;
+    margin: 0 0 7px;
+}
+
+.terms-section p,
+.payment-details p {
+    margin: 3px 0;
+    line-height: 1.4;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 8px;
+    margin: 0;
+}
+
+.thanks {
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.thanks strong {
+    font-size: 13px;
+}
+
+.thanks p {
+    margin: 4px 0 0;
+    color: #555;
+}
+
+.signature-area {
+    width: 150px;
+    text-align: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.stamp-img {
+    width: 85px;
+    height: auto;
+    display: block;
+    margin: 0 auto 3px;
+    object-fit: contain;
+}
+
+.signature-area > strong {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+@media print {
+
+    .invoice-footer {
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        margin-top: 20px;
+    }
+
+    .footer-info {
+        gap: 18px;
+    }
+
+    .stamp-img {
+        width: 82px;
+    }
+}
+
+/* FINAL FOOTER POLISH */
+
+.invoice-footer {
+    margin-top: 22px;
+}
+
+.footer-info {
+    padding-top: 10px;
+}
+
+.footer-bottom {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.thanks {
+    margin-right: 28px;
+    text-align: right;
+}
+
+.signature-area {
+    width: 155px;
+    text-align: center;
+}
+
+.stamp-img {
+    width: 82px;
+    height: auto;
+    display: block;
+    margin: 0 auto 3px;
+}
+
+.signature-area > strong {
+    font-size: 9.5px;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="invoice">
+
+    <div class="header">
+
+        <div class="company">
+
+            <img src="images/logo.png" alt="RR Trinetra">
+
+            <div>
+                <h1>RR Trinetra</h1>
+                <p>RR TRINETRA Focus & Services</p>
+                <p>Vijayawada</p>
+            </div>
+
+        </div>
+
+        <div class="invoice-title">
+
+            <h2>INVOICE</h2>
+
+            <p>
+                Bill No:
+                <strong id="billNumber"></strong>
+            </p>
+
+            <p id="billDate"></p>
+
+        </div>
+
+    </div>
+
+
+    <div class="customer-section">
+
+        <div class="box">
+
+            <strong>Customer Details</strong>
+
+            <div>
+                Name:
+                <span id="customerName"></span>
+            </div>
+
+            <div>
+                Mobile:
+                <span id="customerMobile"></span>
+            </div>
+
+        </div>
+
+
+        <div class="box">
+
+            <strong>Billing Details</strong>
+
+            <div>
+                GSTIN:
+                <span id="customerGST"></span>
+            </div>
+
+            <div>
+                Address:
+                <span id="customerAddress"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>#</th>
+                <th>Item / Description</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Discount</th>
+                <th class="text-right">Amount</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="itemsTable"></tbody>
+
+    </table>
+
+
+    <div class="totals">
+
+        <div class="total-row">
+            <span>Subtotal</span>
+            <strong id="subtotal"></strong>
+        </div>
+
+        <div class="total-row">
+            <span>Discount</span>
+            <strong id="discount"></strong>
+        </div>
+
+        <div class="total-row">
+            <span>GST</span>
+            <strong id="gst"></strong>
+        </div>
+
+        <div class="total-row">
+            <span>Payment Mode</span>
+            <strong id="paymentMode"></strong>
+        </div>
+
+        <div class="total-row grand-total">
+            <span>Grand Total</span>
+            <strong id="grandTotal"></strong>
+        </div>
+
+    </div>
+
+
+    <div class="notes">
+
+        <strong>Notes</strong>
+
+        <p id="notes"></p>
+
+    </div>
+
+
+    <div class="invoice-footer">
+
+    <div class="footer-info">
+
+        <div class="terms-section">
+            <h3>Terms & Conditions</h3>
+
+            <p>1. Goods once sold are subject to applicable terms.</p>
+            <p>2. Warranty is as per manufacturer terms.</p>
+            <p>3. Any issues must be reported within the applicable period.</p>
+        </div>
+
+
+        <div class="payment-details">
+            <h3>Payment Details</h3>
+
+            <p><strong>Bank Name:</strong> —</p>
+            <p><strong>A/C No:</strong> —</p>
+            <p><strong>IFSC:</strong> —</p>
+            <p><strong>UPI ID:</strong> —</p>
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="thanks">
+            <strong>Thank you for your business!</strong>
+            <p>We appreciate your valuable support.</p>
+        </div>
+
+
+        <div class="signature-area">
+
+            <img
+                src="images/rr-trinetra-stamp.png"
+                alt="RR Trinetra Authorized Stamp"
+                class="stamp-img"
+            >
+
+            <strong>Authorized Signature</strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const bill = JSON.parse(
+    localStorage.getItem("printBillData") || "null"
+);
+
+if (!bill) {
+
+    document.body.innerHTML =
+        "<h2 style='text-align:center'>No bill data found.</h2>";
+
+} else {
+
+    document.getElementById("billNumber").textContent =
+        bill.billNumber || "";
+
+    document.getElementById("billDate").textContent =
+        bill.date
+            ? new Date(bill.date).toLocaleString()
+            : "";
+
+    document.getElementById("customerName").textContent =
+        bill.customerName || "";
+
+    document.getElementById("customerMobile").textContent =
+        bill.mobile || "";
+
+    document.getElementById("customerGST").textContent =
+        bill.gstin || "";
+
+    document.getElementById("customerAddress").textContent =
+        bill.address || "";
+
+    document.getElementById("paymentMode").textContent =
+        bill.paymentMode || "";
+
+    document.getElementById("notes").textContent =
+        bill.notes || "-";
+
+
+    let subtotal = 0;
+    let discount = 0;
+
+    const table = document.getElementById("itemsTable");
+
+    (bill.items || []).forEach((item, index) => {
+
+        subtotal += Number(item.qty || 0) * Number(item.rate || 0);
+
+        discount += Number(item.discount || 0);
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.name || ""}</td>
+            <td>${item.qty || 0}</td>
+            <td>₹${Number(item.rate || 0).toFixed(2)}</td>
+            <td>₹${Number(item.discount || 0).toFixed(2)}</td>
+            <td class="text-right">
+                ₹${Number(item.amount || 0).toFixed(2)}
+            </td>
+        `;
+
+        table.appendChild(row);
+
+    });
+
+
+    const gstPercent = Number(bill.gstPercent || 0);
+
+    const taxableAmount = Math.max(
+        subtotal - discount,
+        0
+    );
+
+    const gstAmount =
+        taxableAmount * gstPercent / 100;
+
+
+    document.getElementById("subtotal").textContent =
+        "₹" + subtotal.toFixed(2);
+
+    document.getElementById("discount").textContent =
+        "₹" + discount.toFixed(2);
+
+    document.getElementById("gst").textContent =
+        "₹" + gstAmount.toFixed(2);
+
+    document.getElementById("grandTotal").textContent =
+        "₹" + Number(bill.total || 0).toFixed(2);
+}
+
+</script>
+
+</body>
+</html>

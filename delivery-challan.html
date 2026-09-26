@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delivery Challan | RR Trinetra</title>
+
+    <link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/delivery-challan.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img src="images/logo.png" alt="RR Trinetra">
+
+            <div>
+                <h2>RR Trinetra</h2>
+                <span>Billing Software</span>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+    🏠 Dashboard
+</a>
+            <a href="pos-billing.html">
+                🧾 POS Billing
+            </a>
+
+            <a href="quotation.html">
+                📄 Quotation
+            </a>
+
+            <a href="delivery-challan.html" class="active">
+                🚚 Delivery Challan
+            </a>
+
+            <a href="customers.html">
+                👤 Customers
+            </a>
+
+            <a href="history.html">
+                📋 History
+            </a>
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <div>
+
+                <h1>Delivery Challan</h1>
+
+                <p>
+                    Create a new delivery challan
+                </p>
+
+            </div>
+
+
+            <div class="bill-info">
+
+                <span>DC No.</span>
+
+                <strong id="dcNumber">
+                    DC-1001
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- CUSTOMER DETAILS -->
+        <section class="card customer-card">
+
+            <div class="section-title">
+
+                <h2>Customer Details</h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Customer Name</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter customer name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Mobile Number</label>
+
+                    <input
+                        type="text"
+                        id="customerMobile"
+                        placeholder="Enter mobile number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>GSTIN</label>
+
+                    <input
+                        type="text"
+                        id="customerGST"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Address</label>
+
+                    <input
+                        type="text"
+                        id="customerAddress"
+                        placeholder="Customer address"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DELIVERY DETAILS -->
+        <section class="card delivery-details-card">
+
+            <div class="section-title">
+
+                <h2>Delivery Details</h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Delivery Date</label>
+
+                    <input
+                        type="date"
+                        id="deliveryDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Vehicle Number</label>
+
+                    <input
+                        type="text"
+                        id="vehicleNumber"
+                        placeholder="e.g. AP16AB1234"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Transport / Courier</label>
+
+                    <input
+                        type="text"
+                        id="transportName"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Reference</label>
+
+                    <input
+                        type="text"
+                        id="dcReference"
+                        placeholder="Quotation / Order reference"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ITEMS -->
+        <section class="card items-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Delivery Items</h2>
+
+                    <p>
+                        Add items and quantities
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="addDCItem()"
+                >
+                    + Add Item
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="items-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>
+                                Item / Description
+                            </th>
+
+                            <th>
+                                Qty
+                            </th>
+
+                            <th>
+                                Unit
+                            </th>
+
+                            <th>
+                                Remarks
+                            </th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="dcItemsBody">
+
+                        <tr class="dc-item-row">
+
+                            <td class="serial">
+                                1
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    class="item-name"
+                                    placeholder="Item name"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    class="item-qty"
+                                    value="1"
+                                    min="1"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    class="item-unit"
+                                    value="Nos"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <input
+                                    type="text"
+                                    class="item-remarks"
+                                    placeholder="Optional"
+                                >
+
+                            </td>
+
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    onclick="removeDCItem(this)"
+                                >
+                                    ×
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- REMARKS -->
+        <section class="card remarks-card">
+
+            <h2>Remarks</h2>
+
+            <textarea
+                id="dcRemarks"
+                placeholder="Enter delivery remarks..."
+            ></textarea>
+
+        </section>
+
+
+        <!-- ACTION BAR -->
+        <div class="action-bar">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="newDC()"
+            >
+                New DC
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="saveDC()"
+            >
+                Save DC
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="saveDCAndPrint()"
+            >
+                Save & Print
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- CORE FIRST -->
+<script src="js/core.js"></script>
+
+<!-- DC LOGIC -->
+<script src="js/delivery-challan.js"></script>
+
+</body>
+
+</html>

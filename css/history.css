@@ -1,0 +1,714 @@
+/* =====================================================
+   RR TRINETRA BILLING
+   HISTORY PAGE
+===================================================== */
+
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.history-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+
+.history-summary-card {
+
+    background: #ffffff;
+
+    border: 1px solid #e4e9f1;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    box-shadow:
+        0 6px 20px rgba(25, 48, 85, 0.06);
+
+    transition: all 0.2s ease;
+}
+
+
+.history-summary-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(25, 48, 85, 0.09);
+}
+
+
+.history-summary-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
+    flex-shrink: 0;
+}
+
+
+.history-summary-card span {
+
+    display: block;
+
+    color: #78869d;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+
+.history-summary-card strong {
+
+    display: block;
+
+    color: #102a5b;
+
+    font-size: 22px;
+}
+
+
+/* BILL */
+
+.bills-summary {
+
+    border-top: 3px solid #2563eb;
+}
+
+
+.bills-summary
+.history-summary-icon {
+
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+/* QUOTATION */
+
+.quotation-summary {
+
+    border-top: 3px solid #8b5cf6;
+}
+
+
+.quotation-summary
+.history-summary-icon {
+
+    background: #f3eefe;
+
+    color: #7c3aed;
+}
+
+
+/* DC */
+
+.dc-summary {
+
+    border-top: 3px solid #16a34a;
+}
+
+
+.dc-summary
+.history-summary-icon {
+
+    background: #ecfdf3;
+
+    color: #16a34a;
+}
+
+
+/* =====================================================
+   HISTORY CARD
+===================================================== */
+
+.history-card {
+
+    border-top: 3px solid #2563eb;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   FILTER TABS
+===================================================== */
+
+.history-tabs {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    margin-bottom: 16px;
+
+    flex-wrap: wrap;
+}
+
+
+.history-tab {
+
+    border: 1px solid #dce3ed;
+
+    background: #ffffff;
+
+    color: #526176;
+
+    padding: 9px 16px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+
+.history-tab:hover {
+
+    background: #f4f7fb;
+
+    border-color: #bfc9d8;
+}
+
+
+.history-tab.active {
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.16);
+}
+
+
+/* =====================================================
+   FILTER AREA
+===================================================== */
+
+.history-filters {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    flex-wrap: wrap;
+}
+
+
+/* SEARCH */
+
+.history-search {
+
+    position: relative;
+
+    width: 50%;
+
+    min-width: 320px;
+}
+
+
+.history-search span {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 14px;
+
+    color: #7b8798;
+
+    pointer-events: none;
+}
+
+
+.history-search input {
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 14px 0 38px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #172033;
+
+    transition: all 0.2s ease;
+}
+
+
+.history-search input:focus {
+
+    background: #ffffff;
+
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* DATE */
+
+.history-date-filter {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.history-date-filter label {
+
+    font-size: 11px;
+
+    color: #6b7280;
+
+    font-weight: 600;
+}
+
+
+.history-date-filter input {
+
+    height: 42px;
+
+    padding: 0 11px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #374151;
+}
+
+
+.history-date-filter input:focus {
+
+    background: #ffffff;
+
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.history-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+.history-table th,
+.history-table td {
+
+    padding: 12px 10px;
+
+    border-bottom: 1px solid #edf0f5;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+
+.history-table th {
+
+    background: #f3f6fa;
+
+    color: #374151;
+
+    font-weight: 700;
+
+    text-align: left;
+}
+
+
+.history-table tbody tr {
+
+    transition: all 0.2s ease;
+}
+
+
+.history-table tbody tr:hover {
+
+    background: #f8fbff;
+}
+
+
+/* =====================================================
+   DOCUMENT TYPE BADGES
+===================================================== */
+
+.history-type {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 88px;
+
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.history-type.bill {
+
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+.history-type.quotation {
+
+    background: #f3eefe;
+
+    color: #7c3aed;
+}
+
+
+.history-type.dc {
+
+    background: #ecfdf3;
+
+    color: #16a34a;
+}
+
+
+/* =====================================================
+   DOCUMENT NUMBER
+===================================================== */
+
+.history-document-number {
+
+    color: #102a5b;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   CUSTOMER NAME
+===================================================== */
+
+.history-customer-name {
+
+    color: #172033;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   AMOUNT
+===================================================== */
+
+.history-amount {
+
+    color: #111827;
+
+    font-weight: 700;
+
+    text-align: right;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.history-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.history-view-btn,
+.history-print-btn {
+
+    width: 62px;
+
+    height: 32px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 7px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+
+/* VIEW */
+
+.history-view-btn {
+
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+.history-view-btn:hover {
+
+    background: #dbeafe;
+
+    transform: translateY(-1px);
+}
+
+
+/* PRINT */
+
+.history-print-btn {
+
+    background: #ecfdf3;
+
+    color: #15803d;
+}
+
+
+.history-print-btn:hover {
+
+    background: #dcfce7;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-history {
+
+    display: none;
+
+    min-height: 190px;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+
+.empty-history-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+}
+
+
+.empty-history strong {
+
+    color: #374151;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+
+.empty-history span {
+
+    font-size: 12px;
+
+    color: #7b8798;
+}
+
+
+/* =====================================================
+   TABLE WRAPPER
+===================================================== */
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.table-wrapper::-webkit-scrollbar {
+
+    height: 7px;
+}
+
+
+.table-wrapper::-webkit-scrollbar-thumb {
+
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 950px) {
+
+    .history-summary {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .history-search {
+
+        width: 65%;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .history-summary {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .history-filters {
+
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .history-search {
+
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .history-date-filter {
+
+        width: 100%;
+    }
+
+
+    .history-date-filter input {
+
+        width: 100%;
+    }
+
+
+    .history-table {
+
+        min-width: 900px;
+    }
+
+}

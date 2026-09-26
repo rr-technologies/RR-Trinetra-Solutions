@@ -1,0 +1,117 @@
+/* QUOTATION PAGE */
+
+.customer-card {
+    border-top: 3px solid #2563eb;
+}
+
+.items-card {
+    border-top: 3px solid #0ea5e9;
+}
+
+.quotation-info-card {
+    border-top: 3px solid #16a34a;
+}
+
+.total-card {
+    border-top: 3px solid #7c3aed;
+}
+
+
+/* FORM */
+
+.small-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.small-form select,
+.small-form input,
+.notes-box textarea {
+    width: 100%;
+    border: 1px solid #dbe2ea;
+    border-radius: 9px;
+    padding: 10px 11px;
+    background: #f8fafc;
+    outline: none;
+}
+
+.small-form select:focus,
+.small-form input:focus,
+.notes-box textarea:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.10);
+}
+
+
+/* NOTES */
+
+.notes-box {
+    margin-top: 18px;
+}
+
+.notes-box label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 7px;
+}
+
+.notes-box textarea {
+    height: 90px;
+    resize: vertical;
+}
+
+
+/* TABLE */
+
+.items-table tbody tr {
+    transition: 0.2s;
+}
+
+.items-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* VALIDITY */
+
+.quotation-info-card h2 {
+    margin-bottom: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .small-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .section-header .btn {
+        width: 100%;
+    }
+
+    .action-bar {
+        flex-wrap: wrap;
+    }
+
+    .action-bar .btn {
+        flex: 1;
+        min-width: 140px;
+    }
+}

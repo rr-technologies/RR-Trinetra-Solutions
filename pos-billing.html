@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Billing | RR Trinetra</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/pos-billing.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="images/logo.png" alt="RR Trinetra">
+            <div>
+                <h2>RR Trinetra</h2>
+                <span>Billing Software</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+
+            <a href="dashboard.html">🏠 Dashboard</a>
+
+            <a href="pos-billing.html" class="active">
+                🧾 POS Billing
+            </a>
+
+            <a href="quotation.html">
+                📄 Quotation
+            </a>
+
+            <a href="delivery-challan.html">
+                🚚 Delivery Challan
+            </a>
+
+            <a href="customers.html">
+                👤 Customers
+            </a>
+
+            <a href="history.html">
+                📋 History
+            </a>
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <div>
+                <h1>POS Billing</h1>
+                <p>Create a new customer bill</p>
+            </div>
+
+            <div class="bill-info">
+                <span>Bill No.</span>
+                <strong id="billNumber">INV-1001</strong>
+            </div>
+
+        </header>
+
+
+        <!-- CUSTOMER SECTION -->
+        <section class="card customer-card">
+
+            <div class="section-title">
+                <h2>Customer Details</h2>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter customer name">
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                        type="text"
+                        id="customerMobile"
+                        placeholder="Enter mobile number">
+                </div>
+
+                <div class="form-group">
+                    <label>GSTIN</label>
+                    <input
+                        type="text"
+                        id="customerGST"
+                        placeholder="Optional">
+                </div>
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <input
+                        type="text"
+                        id="customerAddress"
+                        placeholder="Customer address">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ITEMS SECTION -->
+        <section class="card items-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Bill Items</h2>
+                    <p>Add products/services to this bill</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="addItemRow()">
+                    + Add Item
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="items-table">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Item / Description</th>
+                            <th>Qty</th>
+                            <th>Rate</th>
+                            <th>Discount</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="itemsBody">
+
+                        <tr class="item-row">
+
+                            <td class="serial">1</td>
+
+                            <td>
+                                <input
+                                    type="text"
+                                    class="item-name"
+                                    placeholder="Item name">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-qty"
+                                    value="1"
+                                    min="1"
+                                    oninput="calculateBill()">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-rate"
+                                    placeholder="0.00"
+                                    min="0"
+                                    oninput="calculateBill()">
+                            </td>
+
+                            <td>
+                                <input
+                                    type="number"
+                                    class="item-discount"
+                                    value="0"
+                                    min="0"
+                                    oninput="calculateBill()">
+                            </td>
+
+                            <td class="item-amount">
+                                ₹0.00
+                            </td>
+
+                            <td>
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    onclick="removeItemRow(this)">
+                                    ×
+                                </button>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM AREA -->
+        <section class="bottom-grid">
+
+            <!-- PAYMENT -->
+            <div class="card payment-card">
+
+                <h2>Payment</h2>
+
+                <div class="payment-options">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMode"
+                            value="Cash"
+                            checked>
+                        Cash
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMode"
+                            value="UPI">
+                        UPI
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMode"
+                            value="Card">
+                        Card
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="paymentMode"
+                            value="Credit">
+                        Credit
+                    </label>
+
+                </div>
+
+                <div class="notes-box">
+
+                    <label>Notes</label>
+
+                    <textarea
+                        id="billNotes"
+                        placeholder="Optional notes"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL -->
+            <div class="card total-card">
+
+                <div class="total-line">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">₹0.00</strong>
+                </div>
+
+                <div class="total-line">
+                    <span>Discount</span>
+                    <strong id="discountTotal">₹0.00</strong>
+                </div>
+
+                <div class="tax-row">
+
+                    <label>GST %</label>
+
+                    <input
+                        type="number"
+                        id="gstPercent"
+                        value="0"
+                        min="0"
+                        oninput="calculateBill()">
+
+                </div>
+
+                <div class="total-line">
+                    <span>GST</span>
+                    <strong id="gstAmount">₹0.00</strong>
+                </div>
+
+                <div class="grand-total">
+
+                    <span>Grand Total</span>
+
+                    <strong id="grandTotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-bar">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="newBill()">
+                New Bill
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="saveBill()">
+                Save Bill
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="saveAndPrint()">
+                Save & Print
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/pos-billing.js"></script>
+
+</body>
+</html>

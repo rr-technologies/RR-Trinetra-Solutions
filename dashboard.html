@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | RR Trinetra</title>
+
+    <!-- COMMON -->
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- DASHBOARD -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <img
+    id="sidebarLogo"
+    src="images/logo.png"
+    alt="RR Trinetra"
+>
+
+            <div>
+
+                <h2>RR Trinetra</h2>
+
+                <span>Billing Software</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="menu">
+
+            <a href="dashboard.html" class="active">
+    🏠 Dashboard
+</a>
+
+
+            <a href="pos-billing.html">
+                🧾 POS Billing
+            </a>
+
+
+            <a href="quotation.html">
+                📄 Quotation
+            </a>
+
+
+            <a href="delivery-challan.html">
+                🚚 Delivery Challan
+            </a>
+
+
+            <a href="customers.html">
+                👤 Customers
+            </a>
+
+
+            <a
+                href="history.html"
+            >
+                📋 History
+            </a>
+
+
+            <a href="settings.html">
+                ⚙️ Settings
+            </a>
+
+
+        </nav>
+
+
+    </aside>
+
+    <main class="main-content">
+
+        <!-- =========================================
+             PAGE HEADER
+        ========================================== -->
+        <header class="page-header">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Welcome to RR Trinetra Professional Billing System
+                </p>
+            </div>
+
+            <div class="dashboard-date-time">
+
+                <span id="dashboardDate">
+                    --
+                </span>
+
+                <strong id="dashboardTime">
+                    --
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             WELCOME HERO
+        ========================================== -->
+        <section class="dashboard-hero">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    RR TRINETRA
+                </span>
+
+                <h2>
+                    Professional Billing System
+                </h2>
+
+                <p>
+                    Manage your bills, quotations,
+                    delivery challans and customers
+                    from one place.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="pos-billing.html"
+                        class="hero-btn primary">
+                        + Create Bill
+                    </a>
+
+                    <a
+                        href="quotation.html"
+                        class="hero-btn secondary">
+                        + New Quotation
+                    </a>
+
+                </div>
+
+            </div>
+
+            <img
+                src="images/logo.png"
+                alt="RR Trinetra Logo"
+                class="hero-watermark">
+
+        </section>
+
+
+        <!-- =========================================
+             SUMMARY CARDS
+        ========================================== -->
+        <section class="dashboard-summary">
+
+            <!-- TOTAL BILLS -->
+            <div class="summary-card bills-card">
+
+                <div class="summary-icon">
+                    🧾
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Total Bills
+                    </span>
+
+                    <strong id="totalBills">
+                        0
+                    </strong>
+
+                    <small>
+                        All saved invoices
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL SALES -->
+            <div class="summary-card sales-card">
+
+                
+
+                <div class="summary-content">
+
+                    <span>
+                        Total Sales
+                    </span>
+
+                    <strong id="totalSales">
+                        ₹0.00
+                    </strong>
+
+                    <small>
+                        Total billed amount
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUOTATIONS -->
+            <div class="summary-card quotation-card">
+
+                <div class="summary-icon">
+                    📄
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Quotations
+                    </span>
+
+                    <strong id="totalQuotations">
+                        0
+                    </strong>
+
+                    <small>
+                        Saved quotations
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- DELIVERY CHALLANS -->
+            <div class="summary-card dc-card">
+
+                <div class="summary-icon">
+                    🚚
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Delivery Challans
+                    </span>
+
+                    <strong id="totalDeliveryChallans">
+                        0
+                    </strong>
+
+                    <small>
+                        Saved delivery challans
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOMERS -->
+            <div class="summary-card customer-card">
+
+                <div class="summary-icon">
+                    👤
+                </div>
+
+                <div class="summary-content">
+
+                    <span>
+                        Customers
+                    </span>
+
+                    <strong id="totalCustomers">
+                        0
+                    </strong>
+
+                    <small>
+                        Saved customers
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             TODAY SUMMARY
+        ========================================== -->
+        <section class="today-section">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>
+                        Today's Overview
+                    </h2>
+
+                    <p>
+                        Quick summary of today's activity
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshDashboard"
+                    class="refresh-btn">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="today-grid">
+
+                <!-- TODAY BILLS -->
+                <div class="today-card">
+
+                    <span>
+                        Today's Bills
+                    </span>
+
+                    <strong id="todayBills">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- TODAY SALES -->
+                <div class="today-card">
+
+                    <span>
+                        Today's Sales
+                    </span>
+
+                    <strong id="todaySales">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- TODAY QUOTATIONS -->
+                <div class="today-card">
+
+                    <span>
+                        Today's Quotations
+                    </span>
+
+                    <strong id="todayQuotations">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- TODAY DC -->
+                <div class="today-card">
+
+                    <span>
+                        Today's Delivery Challans
+                    </span>
+
+                    <strong id="todayDeliveryChallans">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             QUICK ACTIONS
+        ========================================== -->
+        <section class="quick-actions-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Start your next billing activity
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+                <a
+                    href="pos-billing.html"
+                    class="quick-action-card">
+
+                    <span class="quick-icon">
+                        🧾
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            POS Billing
+                        </strong>
+
+                        <small>
+                            Create a new customer bill
+                        </small>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="quotation.html"
+                    class="quick-action-card">
+
+                    <span class="quick-icon">
+                        📄
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Quotation
+                        </strong>
+
+                        <small>
+                            Prepare a customer quotation
+                        </small>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="delivery-challan.html"
+                    class="quick-action-card">
+
+                    <span class="quick-icon">
+                        🚚
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Delivery Challan
+                        </strong>
+
+                        <small>
+                            Create a delivery challan
+                        </small>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="customers.html"
+                    class="quick-action-card">
+
+                    <span class="quick-icon">
+                        👤
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Customers
+                        </strong>
+
+                        <small>
+                            Add and manage customers
+                        </small>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="history.html"
+                    class="quick-action-card">
+
+                    <span class="quick-icon">
+                        📋
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            History
+                        </strong>
+
+                        <small>
+                            View all saved documents
+                        </small>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             RECENT DOCUMENTS
+        ========================================== -->
+        <section class="recent-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Recent Documents
+                    </h2>
+
+                    <p>
+                        Latest bills, quotations and delivery challans
+                    </p>
+
+                </div>
+
+                <a
+                    href="history.html"
+                    class="view-all-btn">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="recent-table-wrapper">
+
+                <table class="recent-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Document No.
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentDocuments">
+
+                        <tr class="empty-row">
+
+                            <td colspan="6">
+                                No documents available
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+        <footer class="dashboard-footer">
+
+            <span>
+                RR Trinetra Focus &amp; Services
+            </span>
+
+            <span>
+                Professional Billing System
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- =========================================
+     CORE
+========================================== -->
+<script src="js/core.js"></script>
+
+
+<!-- =========================================
+     DASHBOARD LOGIC
+========================================== -->
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

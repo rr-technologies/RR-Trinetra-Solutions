@@ -1,0 +1,417 @@
+/* =========================================
+   RR TRINETRA BILLING
+   CUSTOMERS PAGE
+========================================= */
+
+
+/* PAGE HEADER */
+
+.customer-count-box {
+    min-width: 150px;
+    padding: 12px 18px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.06);
+
+    text-align: right;
+}
+
+.customer-count-box span {
+    display: block;
+
+    font-size: 11px;
+
+    color: #6b7280;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
+}
+
+.customer-count-box strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 23px;
+
+    color: #2563eb;
+}
+
+
+/* CUSTOMER FORM */
+
+.customer-form-card {
+    border-top: 3px solid #2563eb;
+
+    margin-bottom: 18px;
+}
+
+
+/* CUSTOMER LIST */
+
+.customer-list-card {
+    border-top: 3px solid #8b5cf6;
+}
+
+
+/* FORM ACTIONS */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* SEARCH */
+
+.customer-search {
+    position: relative;
+
+    width: 100%;
+
+    margin: 18px 0;
+}
+
+.customer-search input {
+    width: 50%;
+
+    min-width: 320px;
+
+    padding: 12px 42px 12px 14px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.customer-search input:focus {
+    background: #ffffff;
+
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* SEARCH CLEAR */
+
+.search-clear-btn {
+    position: absolute;
+
+    left: calc(50% - 38px);
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 28px;
+
+    height: 28px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #e5e7eb;
+
+    color: #4b5563;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    line-height: 28px;
+
+    transition: 0.2s;
+}
+
+.search-clear-btn:hover {
+    background: #d1d5db;
+
+    color: #111827;
+}
+
+
+/* TABLE */
+
+.customer-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.customer-table th,
+.customer-table td {
+    padding: 12px 10px;
+
+    border-bottom: 1px solid #edf0f5;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+}
+
+.customer-table th {
+    background: #f3f6fa;
+
+    color: #374151;
+
+    font-weight: 700;
+
+    text-align: left;
+}
+
+.customer-table tbody tr {
+    transition: 0.2s;
+}
+
+.customer-table tbody tr:hover {
+    background: #f8fbff;
+
+    transform: translateY(-1px);
+}
+
+
+/* CUSTOMER COLUMNS */
+
+.customer-name-cell {
+    color: #111827;
+
+    font-weight: 700;
+}
+
+.customer-mobile-cell {
+    color: #374151;
+
+    font-weight: 600;
+}
+
+.customer-gst-cell {
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+.customer-address-cell {
+    color: #4b5563;
+}
+
+
+/* ACTIONS */
+
+.table-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* ================================
+   CUSTOMER ACTION BUTTONS
+================================ */
+
+.edit-btn,
+.delete-btn {
+
+    width: 65px;
+    height: 34px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+/* EDIT */
+
+.edit-btn {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+.edit-btn:hover {
+    background: #dbeafe;
+}
+
+
+/* DELETE */
+
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+
+
+/* ACTION GROUP */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}   
+
+
+/* EMPTY STATE */
+
+.empty-customer {
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 190px;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+.empty-customer .empty-icon {
+    margin-bottom: 8px;
+
+    font-size: 38px;
+}
+
+.empty-customer strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #374151;
+
+    font-size: 15px;
+}
+
+.empty-customer span {
+    font-size: 12px;
+}
+
+
+/* FORM INPUT POLISH */
+
+.customer-form-card input {
+    transition: 0.2s;
+}
+
+.customer-form-card input:focus {
+    border-color: #3b82f6;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .customer-search input {
+        width: 75%;
+    }
+
+    .search-clear-btn {
+        left: calc(75% - 38px);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .top-bar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .customer-count-box {
+        width: 100%;
+
+        text-align: left;
+    }
+
+
+    .form-actions {
+        flex-wrap: wrap;
+
+        justify-content: flex-start;
+    }
+
+
+    .customer-search input {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .search-clear-btn {
+        left: auto;
+
+        right: 10px;
+    }
+
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+
+    .customer-table {
+        min-width: 850px;
+    }
+
+}
