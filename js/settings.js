@@ -172,6 +172,14 @@ function loadSettings() {
             settings.email || "";
     }
 
+    const businessGSTIN =
+    document.getElementById("businessGSTIN");
+
+if (businessGSTIN) {
+    businessGSTIN.value =
+        settings.gstin || "";
+}
+
 
     if (address) {
         address.value =
@@ -274,7 +282,7 @@ function collectSettings() {
      settings.gstin =
     document.getElementById("businessGSTIN")
         ? document.getElementById("businessGSTIN").value.trim()
-        : "";       
+        : "";          
 
 
     settings.address =
