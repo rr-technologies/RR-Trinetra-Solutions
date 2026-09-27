@@ -22,6 +22,7 @@ const DEFAULT_SETTINGS = {
     ownerName: "",
     mobile: "",
     email: "",
+    gstin: "",
     address: "Vijayawada",
     receiptPrefix: "INV-",
     currency: "INR",
@@ -269,6 +270,11 @@ function collectSettings() {
         email
             ? email.value.trim()
             : "";
+
+     settings.gstin =
+    document.getElementById("businessGSTIN")
+        ? document.getElementById("businessGSTIN").value.trim()
+        : "";       
 
 
     settings.address =

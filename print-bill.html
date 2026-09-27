@@ -72,22 +72,25 @@
         }
 
         .customer-section {
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
 
-        .box {
-            border: 1px solid #ccc;
-            padding: 12px;
-            border-radius: 5px;
-        }
+.box {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.35;
+}
 
-        .box strong {
-            display: block;
-            margin-bottom: 6px;
-        }
+.box strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
 
         table {
             width: 100%;
@@ -624,6 +627,66 @@
     font-size: 9.5px;
 }
 
+/* ================================
+   BUSINESS DETAILS
+================================ */
+
+.business-details {
+    min-width: 0;
+}
+
+.business-details h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+}
+
+.business-details p {
+    margin: 3px 0;
+    font-size: 13px;
+}
+
+.business-contact {
+    margin-top: 5px !important;
+}
+
+
+/* ================================
+   CUSTOMER DETAILS - SINGLE BOX
+================================ */
+
+.customer-section {
+    margin-top: 18px;
+    display: block;
+}
+
+.customer-box {
+    border: 1px solid #ccc;
+    padding: 9px 11px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.customer-box > strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.customer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+    row-gap: 4px;
+}
+
+.customer-grid > div {
+    line-height: 1.35;
+}
+
+.customer-grid .label {
+    font-weight: 600;
+}
+
     </style>
 </head>
 
@@ -637,11 +700,23 @@
 
             <img src="images/logo.png" alt="RR Trinetra">
 
-            <div>
-                <h1>RR Trinetra</h1>
-                <p>RR TRINETRA Focus & Services</p>
-                <p>Vijayawada</p>
-            </div>
+<div class="business-details">
+
+    <h1 id="businessName">RR Trinetra</h1>
+
+    <p id="businessGSTIN"></p>
+
+    <p id="businessAddress"></p>
+
+    <p class="business-contact">
+        <strong>Mobile:</strong>
+        <span id="businessMobile"></span>
+        &nbsp;&nbsp;
+        <strong>Email:</strong>
+        <span id="businessEmail"></span>
+    </p>
+
+</div>
 
         </div>
 
@@ -658,43 +733,43 @@
 
         </div>
 
-    </div>
-
+        </div>
+        
 
     <div class="customer-section">
 
-        <div class="box">
+    <div class="customer-box">
 
-            <strong>Customer Details</strong>
+        <strong>Customer Details</strong>
+
+        <div class="customer-grid">
 
             <div>
-                Name:
+                <span class="label">Name:</span>
                 <span id="customerName"></span>
             </div>
 
             <div>
-                Mobile:
+                <span class="label">Mobile:</span>
                 <span id="customerMobile"></span>
             </div>
 
-        </div>
-
-
-        <div class="box">
-
-            <strong>Billing Details</strong>
 
             <div>
-                GSTIN:
+                <span class="label">GSTIN:</span>
                 <span id="customerGST"></span>
             </div>
 
             <div>
-                Address:
+                <span class="label">Address:</span>
                 <span id="customerAddress"></span>
             </div>
 
         </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -819,6 +894,30 @@ if (!bill) {
         "<h2 style='text-align:center'>No bill data found.</h2>";
 
 } else {
+
+    const settings =
+    JSON.parse(
+        localStorage.getItem("rrBillingSettings") || "{}"
+    );
+
+document.getElementById("businessName").textContent =
+    settings.businessName ||
+    settings.companyName ||
+    "RR Trinetra";
+
+document.getElementById("businessGSTIN").textContent =
+    settings.gstin
+        ? "GSTIN: " + settings.gstin
+        : "";
+
+document.getElementById("businessAddress").textContent =
+    settings.address || "";
+
+document.getElementById("businessMobile").textContent =
+    settings.mobile || "";
+
+document.getElementById("businessEmail").textContent =
+    settings.email || "";
 
     document.getElementById("billNumber").textContent =
         bill.billNumber || "";
