@@ -386,19 +386,23 @@
             >
 
 
-            <div>
+            <div class="business-details">
 
-                <h1>RR Trinetra</h1>
+    <h1 id="businessName">RR Trinetra</h1>
 
-                <p>
-                    RR TRINETRA Focus & Services
-                </p>
+    <p id="businessGSTIN"></p>
 
-                <p>
-                    Vijayawada
-                </p>
+    <p id="businessAddress"></p>
 
-            </div>
+    <p class="business-contact">
+        <strong>Mobile:</strong>
+        <span id="businessMobile"></span>
+        &nbsp;&nbsp;
+        <strong>Email:</strong>
+        <span id="businessEmail"></span>
+    </p>
+
+</div>
 
         </div>
 
@@ -660,6 +664,33 @@
             "</h2>";
 
     } else {
+
+    const settings =
+    JSON.parse(
+        localStorage.getItem("rrBillingSettings") || "{}"
+    );
+
+document.getElementById("businessName").textContent =
+    settings.businessName ||
+    settings.companyName ||
+    "RR Trinetra";
+
+document.getElementById("businessGSTIN").textContent =
+    settings.gstin
+        ? "GSTIN: " + settings.gstin
+        : "";
+
+document.getElementById("businessAddress").textContent =
+    (settings.address || "").replace(
+        ", Vijayawada",
+        ",\nVijayawada"
+    );
+
+document.getElementById("businessMobile").textContent =
+    settings.mobile || "";
+
+document.getElementById("businessEmail").textContent =
+    settings.email || "";
 
 
         /* BASIC DETAILS */

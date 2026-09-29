@@ -276,7 +276,52 @@ function newBill() {
             localStorage.getItem("posBills") || "[]"
         );
 
+    const editBillData =
+    localStorage.getItem("editBillData");
+
+if (editBillData) {
+
+    try {
+
+        const editingBill =
+            JSON.parse(editBillData);
+
+        const editIndex =
+            bills.findIndex(
+                existingBill =>
+                    existingBill.billNumber ===
+                    bill.billNumber
+            );
+
+        if (editIndex !== -1) {
+
+            bills[editIndex] = bill;
+
+        } else {
+
+            bills.push(bill);
+
+        }
+
+        localStorage.removeItem(
+            "editBillData"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to update edited bill:",
+            error
+        );
+
+        bills.push(bill);
+    }
+
+} else {
+
     bills.push(bill);
+
+}
 
     localStorage.setItem(
         "posBills",
@@ -336,12 +381,164 @@ function generateNextBillNumber() {
 // INITIALIZE
 document.addEventListener("DOMContentLoaded", () => {
 
+    const editBillData =
+        localStorage.getItem("editBillData");
+
+    if (editBillData) {
+
+        try {
+
+            const bill =
+                JSON.parse(editBillData);
+
+            // BILL NUMBER
+            if (bill.billNumber) {
+
+                document.getElementById(
+                    "billNumber"
+                ).textContent =
+                    bill.billNumber;
+            }
+
+            // CUSTOMER DETAILS
+            document.getElementById(
+                "customerName"
+            ).value =
+                bill.customerName || "";
+
+            document.getElementById(
+                "customerMobile"
+            ).value =
+                bill.mobile || "";
+
+            document.getElementById(
+                "customerGST"
+            ).value =
+                bill.gstin || "";
+
+            document.getElementById(
+                "customerAddress"
+            ).value =
+                bill.address || "";
+
+            // GST %
+            document.getElementById(
+                "gstPercent"
+            ).value =
+                bill.gstPercent || 0;
+
+            // PAYMENT MODE
+            const savedPaymentMode =
+                String(
+                    bill.paymentMode || "Cash"
+                ).toLowerCase();
+
+            document
+                .querySelectorAll(
+                    'input[name="paymentMode"]'
+                )
+                .forEach(
+                    radio => {
+
+                        radio.checked =
+                            String(
+                                radio.value
+                            ).toLowerCase() ===
+                            savedPaymentMode;
+
+                    }
+                );
+
+            // NOTES
+            const notes =
+                document.getElementById(
+                    "billNotes"
+                );
+
+            if (notes) {
+                notes.value =
+                    bill.notes || "";
+            }
+
+            // ITEMS
+            const itemsBody =
+                document.getElementById(
+                    "itemsBody"
+                );
+
+            itemsBody.innerHTML = "";
+
+            itemCount = 0;
+
+            const savedItems =
+                Array.isArray(bill.items)
+                    ? bill.items
+                    : [];
+
+            savedItems.forEach(item => {
+
+                addItemRow();
+
+                const rows =
+                    document.querySelectorAll(
+                        ".item-row"
+                    );
+
+                const row =
+                    rows[rows.length - 1];
+
+                row.querySelector(
+                    ".item-name"
+                ).value =
+                    item.name || "";
+
+                row.querySelector(
+                    ".item-qty"
+                ).value =
+                    item.qty || 1;
+
+                row.querySelector(
+                    ".item-rate"
+                ).value =
+                    item.rate || "";
+
+                row.querySelector(
+                    ".item-discount"
+                ).value =
+                    item.discount || 0;
+
+            });
+
+            // At least one empty row
+            if (!savedItems.length) {
+                addItemRow();
+            }
+
+            calculateBill();
+
+            return;
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load edit bill:",
+                error
+            );
+
+        }
+    }
+
+    // NEW BILL
     const savedNumber =
         parseInt(
-            localStorage.getItem("lastBillNumber") || "1000"
+            localStorage.getItem(
+                "lastBillNumber"
+            ) || "1000"
         ) + 1;
 
-    document.getElementById("billNumber").textContent =
+    document.getElementById(
+        "billNumber"
+    ).textContent =
         "INV-" + savedNumber;
 
     calculateBill();

@@ -787,6 +787,14 @@ function renderHistory() {
                             Print
                         </button>
 
+                        <button
+    type="button"
+    class="history-edit-btn"
+    data-index="${allHistoryRecords.indexOf(record)}"
+>
+    Edit
+</button>
+
                     </div>
 
                 </td>
@@ -810,6 +818,10 @@ function renderHistory() {
                     ".history-print-btn"
                 );
 
+                const editButton =
+    row.querySelector(
+        ".history-edit-btn"
+    );
 
             if (viewButton) {
 
@@ -825,6 +837,21 @@ function renderHistory() {
                 );
 
             }
+
+            if (editButton) {
+
+    editButton.addEventListener(
+        "click",
+        () => {
+
+            editHistoryRecord(
+                record
+            );
+
+        }
+    );
+
+}
 
 
             if (printButton) {
@@ -1174,6 +1201,55 @@ function viewHistoryRecord(
 
 }
 
+/* =====================================================
+   EDIT RECORD
+   ===================================================== */
+
+function editHistoryRecord(record) {
+
+    if (!record || !record.original) {
+        return;
+    }
+
+    if (record.type === "bill") {
+
+        localStorage.setItem(
+            "editBillData",
+            JSON.stringify(record.original)
+        );
+
+        window.location.href =
+            "pos-billing.html";
+
+        return;
+    }
+
+    if (record.type === "quotation") {
+
+        localStorage.setItem(
+            "editQuotationData",
+            JSON.stringify(record.original)
+        );
+
+        window.location.href =
+            "quotation.html";
+
+        return;
+    }
+
+    if (record.type === "dc") {
+
+        localStorage.setItem(
+            "editDCData",
+            JSON.stringify(record.original)
+        );
+
+        window.location.href =
+            "delivery-challan.html";
+
+        return;
+    }
+}
 
 /* =====================================================
    PRINT RECORD
