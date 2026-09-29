@@ -438,7 +438,52 @@ function saveQuotation(showMessage = true) {
         );
 
 
+    const editQuotationData =
+    localStorage.getItem("editQuotationData");
+
+if (editQuotationData) {
+
+    try {
+
+        const editingQuotation =
+            JSON.parse(editQuotationData);
+
+        const editIndex =
+            quotations.findIndex(
+                existingQuotation =>
+                    existingQuotation.quotationNumber ===
+                    quotation.quotationNumber
+            );
+
+        if (editIndex !== -1) {
+
+            quotations[editIndex] = quotation;
+
+        } else {
+
+            quotations.push(quotation);
+
+        }
+
+        localStorage.removeItem(
+            "editQuotationData"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to update edited quotation:",
+            error
+        );
+
+        quotations.push(quotation);
+    }
+
+} else {
+
     quotations.push(quotation);
+
+}
 
 
     localStorage.setItem(
@@ -627,25 +672,155 @@ function saveQuotationAndPrint() {
 
 
 // INITIALIZE
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        const savedNumber =
-            parseInt(
-                localStorage.getItem(
-                    "lastQuotationNumber"
-                ) || "1000"
-            ) + 1;
+    const editQuotationData =
+        localStorage.getItem("editQuotationData");
 
+    if (editQuotationData) {
 
-        document.getElementById(
-            "quotationNumber"
-        ).textContent =
-            "QT-" + savedNumber;
+        try {
 
+            const quotation =
+                JSON.parse(editQuotationData);
 
-        calculateQuotation();
+            // QUOTATION NUMBER
+            if (quotation.quotationNumber) {
 
+                document.getElementById(
+                    "quotationNumber"
+                ).textContent =
+                    quotation.quotationNumber;
+            }
+
+            // CUSTOMER DETAILS
+            document.getElementById(
+                "customerName"
+            ).value =
+                quotation.customerName || "";
+
+            document.getElementById(
+                "customerMobile"
+            ).value =
+                quotation.mobile || "";
+
+            document.getElementById(
+                "customerGST"
+            ).value =
+                quotation.gstin || "";
+
+            document.getElementById(
+                "customerAddress"
+            ).value =
+                quotation.address || "";
+
+            // GST %
+            document.getElementById(
+                "gstPercent"
+            ).value =
+                quotation.gstPercent || 0;
+
+            // VALIDITY
+            document.getElementById(
+                "quotationValidity"
+            ).value =
+                quotation.validity || "";
+
+            // REFERENCE
+            document.getElementById(
+                "quotationReference"
+            ).value =
+                quotation.reference || "";
+
+            // NOTES
+            document.getElementById(
+                "quotationNotes"
+            ).value =
+                quotation.notes || "";
+
+            // ITEMS
+            const itemsBody =
+                document.getElementById(
+                    "quotationItemsBody"
+                );
+
+            itemsBody.innerHTML = "";
+
+            quotationItemCount = 0;
+
+            const savedItems =
+                Array.isArray(quotation.items)
+                    ? quotation.items
+                    : [];
+
+            savedItems.forEach(item => {
+
+                addQuotationItem();
+
+                const rows =
+                    document.querySelectorAll(
+                        ".quotation-item-row"
+                    );
+
+                const row =
+                    rows[rows.length - 1];
+
+                row.querySelector(
+                    ".item-name"
+                ).value =
+                    item.name || "";
+
+                row.querySelector(
+                    ".item-qty"
+                ).value =
+                    item.qty || 1;
+
+                row.querySelector(
+                    ".item-rate"
+                ).value =
+                    item.rate || "";
+
+                row.querySelector(
+                    ".item-discount"
+                ).value =
+                    item.discount || 0;
+
+            });
+
+            if (!savedItems.length) {
+                addQuotationItem();
+            }
+
+            calculateQuotation();
+
+            return;
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load edit quotation:",
+                error
+            );
+
+            localStorage.removeItem(
+                "editQuotationData"
+            );
+        }
     }
-);
+
+    // NEW QUOTATION
+    const savedNumber =
+        parseInt(
+            localStorage.getItem(
+                "lastQuotationNumber"
+            ) || "1000"
+        ) + 1;
+
+    document.getElementById(
+        "quotationNumber"
+    ).textContent =
+        "QT-" + savedNumber;
+
+    calculateQuotation();
+
+});
