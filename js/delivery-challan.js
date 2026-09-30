@@ -223,7 +223,7 @@ function saveDC(
                 row.querySelector(
                     ".item-qty"
                 ).value
-            ) || 0;
+                ) || 0;
 
         const unit =
             row.querySelector(
@@ -327,20 +327,63 @@ function saveDC(
 
 
     const dcList =
-        JSON.parse(
-            localStorage.getItem(
-                "deliveryChallans"
-            ) || "[]"
+    JSON.parse(
+        localStorage.getItem(
+            "deliveryChallans"
+        ) || "[]"
+    );
+
+const editDCData =
+    localStorage.getItem("editDCData");
+
+if (editDCData) {
+
+    try {
+
+        const editingDC =
+            JSON.parse(editDCData);
+
+        const editIndex =
+            dcList.findIndex(
+                existingDC =>
+                    existingDC.dcNumber ===
+                    dc.dcNumber
+            );
+
+        if (editIndex !== -1) {
+
+            dcList[editIndex] = dc;
+
+        } else {
+
+            dcList.push(dc);
+
+        }
+
+        localStorage.removeItem(
+            "editDCData"
         );
 
+    } catch (error) {
+
+        console.error(
+            "Unable to update edited DC:",
+            error
+        );
+
+        dcList.push(dc);
+    }
+
+} else {
 
     dcList.push(dc);
 
+}
 
-    localStorage.setItem(
-        "deliveryChallans",
-        JSON.stringify(dcList)
-    );
+localStorage.setItem(
+    "deliveryChallans",
+    JSON.stringify(dcList)
+);
 
 
     if (showMessage) {
@@ -538,26 +581,155 @@ function saveDCAndPrint() {
    INITIALIZE
 ================================ */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        document.getElementById(
-            "deliveryDate"
-        ).value =
-            new Date()
-                .toISOString()
-                .split("T")[0];
+    const editDCData =
+        localStorage.getItem("editDCData");
 
+    if (editDCData) {
 
-        const nextNumber =
-            getNextDCNumber();
+        try {
 
+            const dc =
+                JSON.parse(editDCData);
 
-        document.getElementById(
-            "dcNumber"
-        ).textContent =
-            nextNumber;
+            // DC NUMBER
+            if (dc.dcNumber) {
+                document.getElementById(
+                    "dcNumber"
+                ).textContent = dc.dcNumber;
+            }
 
+            // CUSTOMER DETAILS
+            document.getElementById(
+                "customerName"
+            ).value =
+                dc.customerName || "";
+
+            document.getElementById(
+                "customerMobile"
+            ).value =
+                dc.mobile || "";
+
+            document.getElementById(
+                "customerGST"
+            ).value =
+                dc.gstin || "";
+
+            document.getElementById(
+                "customerAddress"
+            ).value =
+                dc.address || "";
+
+            // DELIVERY DETAILS
+            document.getElementById(
+                "deliveryDate"
+            ).value =
+                dc.deliveryDate || "";
+
+            document.getElementById(
+                "vehicleNumber"
+            ).value =
+                dc.vehicleNumber || "";
+
+            document.getElementById(
+                "transportName"
+            ).value =
+                dc.transportName || "";
+
+            document.getElementById(
+                "dcReference"
+            ).value =
+                dc.reference || "";
+
+            document.getElementById(
+                "dcRemarks"
+            ).value =
+                dc.remarks || "";
+
+            // ITEMS
+            const itemsBody =
+                document.getElementById(
+                    "dcItemsBody"
+                );
+
+            itemsBody.innerHTML = "";
+
+            dcItemCount = 0;
+
+            const savedItems =
+                Array.isArray(dc.items)
+                    ? dc.items
+                    : [];
+
+            savedItems.forEach(item => {
+
+                addDCItem();
+
+                const rows =
+                    document.querySelectorAll(
+                        ".dc-item-row"
+                    );
+
+                const row =
+                    rows[rows.length - 1];
+
+                row.querySelector(
+                    ".item-name"
+                ).value =
+                    item.name || "";
+
+                row.querySelector(
+                    ".item-qty"
+                ).value =
+                    item.qty || 1;
+
+                row.querySelector(
+                    ".item-unit"
+                ).value =
+                    item.unit || "Nos";
+
+                row.querySelector(
+                    ".item-remarks"
+                ).value =
+                    item.remarks || "";
+
+            });
+
+            if (!savedItems.length) {
+                addDCItem();
+            }
+
+            
+
+            return;
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load edited DC:",
+                error
+            );
+
+            localStorage.removeItem(
+                "editDCData"
+            );
+        }
     }
-);
+
+    // NEW DC
+    document.getElementById(
+        "deliveryDate"
+    ).value =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    const nextNumber =
+        getNextDCNumber();
+
+    document.getElementById(
+        "dcNumber"
+    ).textContent =
+        nextNumber;
+});
